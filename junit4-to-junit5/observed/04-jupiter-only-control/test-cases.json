@@ -1,0 +1,23 @@
+[
+  {
+    "identity": "example.ModernTest#newBehavior",
+    "raw_name": "newBehavior",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  },
+  {
+    "identity": "example.ModernTest#preservesQuantity(int)[1]",
+    "raw_name": "preservesQuantity(int)[1]",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  },
+  {
+    "identity": "example.ModernTest#preservesQuantity(int)[2]",
+    "raw_name": "preservesQuantity(int)[2]",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  }
+]

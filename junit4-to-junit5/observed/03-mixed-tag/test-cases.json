@@ -1,0 +1,9 @@
+[
+  {
+    "identity": "example.LegacyTest#doublesQuantity",
+    "raw_name": "doublesQuantity",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.LegacyTest.xml"
+  }
+]

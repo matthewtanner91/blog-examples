@@ -1,0 +1,51 @@
+[
+  {
+    "identity": "example.LegacyTest#absentEnvironment",
+    "raw_name": "absentEnvironment",
+    "status": "skipped",
+    "details": " org.junit.AssumptionViolatedException org.junit.AssumptionViolatedException: no integration target\n\tat org.junit.Assume.assumeTrue(Assume.java:68)\n\tat example.LegacyTest.absentEnvironment(LegacyTest.java:20)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:569)\n",
+    "xml": "TEST-example.LegacyTest.xml"
+  },
+  {
+    "identity": "example.LegacyTest#disabledCase",
+    "raw_name": "disabledCase",
+    "status": "skipped",
+    "details": "intentional fixture skip  ",
+    "xml": "TEST-example.LegacyTest.xml"
+  },
+  {
+    "identity": "example.LegacyTest#doublesQuantity",
+    "raw_name": "doublesQuantity",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.LegacyTest.xml"
+  },
+  {
+    "identity": "example.LegacyTest#rejectsNegativeQuantity",
+    "raw_name": "rejectsNegativeQuantity",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.LegacyTest.xml"
+  },
+  {
+    "identity": "example.ModernTest#newBehavior",
+    "raw_name": "newBehavior",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  },
+  {
+    "identity": "example.ModernTest#preservesQuantity(int)[1]",
+    "raw_name": "preservesQuantity(int)[1]",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  },
+  {
+    "identity": "example.ModernTest#preservesQuantity(int)[2]",
+    "raw_name": "preservesQuantity(int)[2]",
+    "status": "passed",
+    "details": "",
+    "xml": "TEST-example.ModernTest.xml"
+  }
+]

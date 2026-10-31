@@ -1,0 +1,110 @@
+[
+  {
+    "step": "java-version",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "maven-version",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-dependencies",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-dependency-tree",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-compile-shared",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-compile-web",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-compile-runner",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-dependencies",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-dependency-tree",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-compile-shared",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-compile-web",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-compile-runner",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "baseline-runtime",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "target-runtime",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "negative-java-se",
+    "exit": 1,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "negative-property",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "negative-service",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  },
+  {
+    "step": "negative-binary",
+    "exit": 0,
+    "timed_out": false,
+    "passed": true
+  }
+]

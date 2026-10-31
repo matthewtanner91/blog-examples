@@ -1,0 +1,23 @@
+$ mvn -B -f <fixture-root>/work/target/pom.xml org.apache.maven.plugins:maven-dependency-plugin:3.8.1:copy-dependencies -DoutputDirectory=<fixture-root>/work/target/deps
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< example:namespace-probe-target >-------------------
+[INFO] Building namespace-probe-target 1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/10.1.61/tomcat-embed-core-10.1.61.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/10.1.61/tomcat-embed-core-10.1.61.pom (1.7 kB at 8.4 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/10.1.61/tomcat-annotations-api-10.1.61.pom
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/10.1.61/tomcat-annotations-api-10.1.61.pom (1.5 kB at 37 kB/s)
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/10.1.61/tomcat-embed-core-10.1.61.jar
+[INFO] Downloading from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/10.1.61/tomcat-annotations-api-10.1.61.jar
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/10.1.61/tomcat-annotations-api-10.1.61.jar (14 kB at 375 kB/s)
+[INFO] Downloaded from central: https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/10.1.61/tomcat-embed-core-10.1.61.jar (3.7 MB at 8.2 MB/s)
+[INFO] 
+[INFO] --- dependency:3.8.1:copy-dependencies (default-cli) @ namespace-probe-target ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.185 s
+[INFO] Finished at: 2026-10-30T21:18:12-04:00
+[INFO] ------------------------------------------------------------------------

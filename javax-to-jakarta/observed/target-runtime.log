@@ -1,0 +1,29 @@
+$ java -cp <fixture-root>/work/target/classes/runner:<fixture-root>/work/target/deps/tomcat-annotations-api-10.1.61.jar:<fixture-root>/work/target/deps/tomcat-embed-core-10.1.61.jar demo.ProbeRunner <fixture-root>/work/target/probe.war 200 name=pilot;sql=javax.sql.DataSource;initializer=discovered
+TOMCAT_BASE=<fixture-root>/work/tomcat-probe-13910679975787177247
+Oct. 30, 2026 9:18:15 P.M. org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-nio-127.0.0.1-auto-1"]
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.core.StandardService startInternal
+INFO: Starting service [Tomcat]
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet engine: [Apache Tomcat/10.1.61]
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.startup.ContextConfig getDefaultWebXmlFragment
+INFO: No global web.xml found
+Oct. 30, 2026 9:18:15 P.M. org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-127.0.0.1-auto-1-53881"]
+OBSERVED_STATUS=200
+OBSERVED_BODY=name=pilot;sql=javax.sql.DataSource;initializer=discovered
+PROBE_PASS
+Oct. 30, 2026 9:18:15 P.M. org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-nio-127.0.0.1-auto-1-53881"]
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service [Tomcat]
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.loader.WebappClassLoaderBase clearReferencesObjectStreamClassCaches
+WARNING: You need to add "--add-opens=java.base/java.io=ALL-UNNAMED" to the JVM command line arguments to enable ObjectStream cache memory leak protection. Alternatively, you can suppress this warning by disabling ObjectStream class cache memory leak protection.
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.loader.WebappClassLoaderBase checkThreadLocalsForLeaks
+WARNING: You need to add "--add-opens=java.base/java.lang=ALL-UNNAMED" to the JVM command line arguments to enable ThreadLocal memory leak detection. Alternatively, you can suppress this warning by disabling ThreadLocal memory leak detection.
+Oct. 30, 2026 9:18:15 P.M. org.apache.catalina.loader.WebappClassLoaderBase clearReferencesRmiTargets
+WARNING: You need to add "--add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED" to the JVM command line arguments to enable RMI Target memory leak detection. Alternatively, you can suppress this warning by disabling RMI Target memory leak detection.
+Oct. 30, 2026 9:18:15 P.M. org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-nio-127.0.0.1-auto-1-53881"]
+Oct. 30, 2026 9:18:15 P.M. org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-nio-127.0.0.1-auto-1-53881"]

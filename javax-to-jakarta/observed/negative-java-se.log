@@ -1,0 +1,10 @@
+$ javac --release 17 -d <fixture-root>/work/bad-classes <fixture-root>/work/BadSql.java
+<fixture-root>/work/BadSql.java:1: error: package jakarta.sql does not exist
+import jakarta.sql.DataSource; class BadSql { DataSource source; }
+                  ^
+<fixture-root>/work/BadSql.java:1: error: cannot find symbol
+import jakarta.sql.DataSource; class BadSql { DataSource source; }
+                                              ^
+  symbol:   class DataSource
+  location: class BadSql
+2 errors

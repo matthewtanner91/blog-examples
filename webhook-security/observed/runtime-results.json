@@ -1,0 +1,326 @@
+{
+  "captured_utc": "2026-10-30T19:48:37.369613+00:00",
+  "python": "3.12.14",
+  "system": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "scope": "Loopback synthetic fixture; no provider account, provider SDK, production target or StackHawk scanner",
+  "clock": 1700000000,
+  "past_tolerance_seconds": 300,
+  "future_skew_seconds_fixture_policy": 30,
+  "body_limit_bytes": 4096,
+  "server_stopped": true,
+  "cases": [
+    {
+      "case": "valid_utf8_positive",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "altered_body",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "wrong_secret",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "missing_signature",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "malformed_signature",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "unsupported_scheme",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "whitespace_change",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 109,
+      "pass": true
+    },
+    {
+      "case": "json_reserialized",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 121,
+      "pass": true
+    },
+    {
+      "case": "truncated_signature",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "positive_after_negatives",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "signed_malformed_json",
+      "expected_status": 400,
+      "status": 400,
+      "outcome": "json_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 1,
+      "pass": true
+    },
+    {
+      "case": "missing_field",
+      "expected_status": 422,
+      "status": 422,
+      "outcome": "schema_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 107,
+      "pass": true
+    },
+    {
+      "case": "extra_field",
+      "expected_status": 422,
+      "status": 422,
+      "outcome": "schema_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 136,
+      "pass": true
+    },
+    {
+      "case": "wrong_type",
+      "expected_status": 422,
+      "status": 422,
+      "outcome": "schema_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 123,
+      "pass": true
+    },
+    {
+      "case": "unsupported_version",
+      "expected_status": 422,
+      "status": 422,
+      "outcome": "schema_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 121,
+      "pass": true
+    },
+    {
+      "case": "unexpected_event",
+      "expected_status": 422,
+      "status": 422,
+      "outcome": "schema_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 121,
+      "pass": true
+    },
+    {
+      "case": "signed_cross_account",
+      "expected_status": 403,
+      "status": 403,
+      "outcome": "account_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 119,
+      "pass": true
+    },
+    {
+      "case": "early_oversized_rejection",
+      "expected_status": 413,
+      "status": 413,
+      "outcome": "body_too_large",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 0,
+      "pass": true
+    },
+    {
+      "case": "timestamp_current",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "timestamp_inside_window",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "timestamp_at_boundary",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "timestamp_outside_window",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "future_at_fixture_skew_limit",
+      "expected_status": 200,
+      "status": 200,
+      "outcome": "applied",
+      "expected_effects": 1,
+      "actual_effects": 1,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "future_outside_fixture_skew_limit",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "modified_signed_timestamp",
+      "expected_status": 401,
+      "status": 401,
+      "outcome": "authentication_rejected",
+      "expected_effects": 0,
+      "actual_effects": 0,
+      "bytes_read": 108,
+      "pass": true
+    },
+    {
+      "case": "freshly_signed_retry_same_event",
+      "responses": [
+        {
+          "status": 200,
+          "outcome": "applied"
+        },
+        {
+          "status": 200,
+          "outcome": "duplicate"
+        }
+      ],
+      "actual_effects": 1,
+      "expected_effects": 1,
+      "pass": true
+    },
+    {
+      "case": "concurrent_duplicate_deliveries",
+      "requests": 8,
+      "applied": 1,
+      "duplicates": 7,
+      "actual_effects": 1,
+      "expected_effects": 1,
+      "pass": true
+    },
+    {
+      "case": "fixture_rotation_overlap_then_retirement",
+      "responses": [
+        {
+          "status": 200,
+          "outcome": "applied"
+        },
+        {
+          "status": 401,
+          "outcome": "authentication_rejected"
+        },
+        {
+          "status": 200,
+          "outcome": "applied"
+        }
+      ],
+      "actual_effects": 2,
+      "expected_effects": 2,
+      "pass": true
+    },
+    {
+      "case": "failure_then_legitimate_retry",
+      "responses": [
+        {
+          "status": 503,
+          "outcome": "retryable_failure"
+        },
+        {
+          "status": 200,
+          "outcome": "applied"
+        }
+      ],
+      "effects_after_failure": 0,
+      "actual_effects": 1,
+      "pass": true
+    }
+  ],
+  "passed": 29,
+  "total": 29
+}

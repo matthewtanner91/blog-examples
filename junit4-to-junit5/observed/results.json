@@ -1,0 +1,58 @@
+[
+  {
+    "stage": "01-mixed",
+    "cases": 7,
+    "passed": 5,
+    "skipped_or_aborted": 2,
+    "contract_checked": true
+  },
+  {
+    "stage": "02-ci-replay",
+    "cases": 7,
+    "passed": 5,
+    "skipped_or_aborted": 2,
+    "contract_checked": true
+  },
+  {
+    "stage": "03-mixed-tag",
+    "cases": 1,
+    "passed": 1,
+    "skipped_or_aborted": 0,
+    "contract_checked": true
+  },
+  {
+    "stage": "04-jupiter-only-control",
+    "cases": 3,
+    "passed": 3,
+    "skipped_or_aborted": 0,
+    "contract_checked": true
+  },
+  {
+    "stage": "05-converted",
+    "cases": 7,
+    "passed": 5,
+    "skipped_or_aborted": 2,
+    "contract_checked": true
+  },
+  {
+    "stage": "06-converted-tag",
+    "cases": 1,
+    "passed": 1,
+    "skipped_or_aborted": 0,
+    "contract_checked": true
+  },
+  {
+    "stage": "07-no-vintage",
+    "cases": 7,
+    "passed": 5,
+    "skipped_or_aborted": 2,
+    "contract_checked": true
+  },
+  {
+    "stage": "08-no-junit4",
+    "cases": 7,
+    "passed": 5,
+    "skipped_or_aborted": 2,
+    "contract_checked": true
+  }
+]

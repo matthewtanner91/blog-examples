@@ -1,0 +1,6 @@
+$ mvn -version
+Apache Maven 3.9.12 (848fbb4bf2d427b72bdb2471c22fced7ebd9a7a1)
+Maven home: /opt/homebrew/Cellar/maven/3.9.12/libexec
+Java version: 17.0.19, vendor: Homebrew, runtime: /opt/homebrew/Cellar/openjdk@17/17.0.19/libexec/openjdk.jdk/Contents/Home
+Default locale: en_CA, platform encoding: UTF-8
+OS name: "mac os x", version: "26.6.2", arch: "aarch64", family: "mac"

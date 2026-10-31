@@ -1,0 +1,8 @@
+{
+  "README.md": "2d722177fa97c2f0a3d03ff8ba9001f6cf3800263025111cf42889d64a1acb9f",
+  "observed/runtime-output.txt": "f523807fb18d4ac3149faf8f722672b65044acb5d06228fd83d1b788e44efb81",
+  "observed/runtime-results.json": "f523807fb18d4ac3149faf8f722672b65044acb5d06228fd83d1b788e44efb81",
+  "observed/snippet-output.txt": "068f2de01449addc33b3fd8fd55137d0b7305559d002684e69567017598c3785",
+  "receiver_fixture.py": "b7b86d8669ca476524513d0a1a0574cc47f6214863acdc1ae921842df005fdfb",
+  "verify_github.py": "711f2f06e7c7cb9742dace211d5c78a2b6e1f95c4193ba473a6e1dcf03fe2c07"
+}

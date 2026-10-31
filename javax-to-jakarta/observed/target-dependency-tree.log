@@ -1,0 +1,18 @@
+$ mvn -B -f <fixture-root>/work/target/pom.xml org.apache.maven.plugins:maven-dependency-plugin:3.8.1:tree
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------------< example:namespace-probe-target >-------------------
+[INFO] Building namespace-probe-target 1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.8.1:tree (default-cli) @ namespace-probe-target ---
+[INFO] example:namespace-probe-target:jar:1.0
+[INFO] \- org.apache.tomcat.embed:tomcat-embed-core:jar:10.1.61:compile
+[INFO]    \- org.apache.tomcat:tomcat-annotations-api:jar:10.1.61:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.391 s
+[INFO] Finished at: 2026-10-30T21:18:13-04:00
+[INFO] ------------------------------------------------------------------------

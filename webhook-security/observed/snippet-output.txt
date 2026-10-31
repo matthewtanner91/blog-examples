@@ -1,0 +1,1 @@
+PASS: public vector; changed bytes rejected; missing signature rejected
