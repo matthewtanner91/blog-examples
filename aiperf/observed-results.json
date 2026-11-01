@@ -1,0 +1,29 @@
+{
+  "observed_utc": "2026-10-31T12:55:19Z",
+  "kind": "Historical execution of the adapter and original runner; not a new clean-install test of this package",
+  "versions": {
+    "node": "24.22.2",
+    "python": "3.13.7",
+    "aiperf": "0.13.0",
+    "transformers_js": "3.8.1",
+    "onnxruntime_node": "1.21.0"
+  },
+  "readiness_requests": 1,
+  "measured_requests": 4,
+  "raw_input_tokens_per_request": 128,
+  "templated_input_tokens_per_request": 158,
+  "measured_output_tokens_per_request": 32,
+  "total_measured_output_tokens": 128,
+  "profile_complete": true,
+  "errors": [],
+  "cleanup": {
+    "profile_exit": 0,
+    "profile_group_absent": true,
+    "server_exit": 0,
+    "server_group_absent": true,
+    "endpoint_closed": true,
+    "elapsed_seconds": 20.18756258301437,
+    "integrity_unchanged": true,
+    "runner_status": 0
+  }
+}

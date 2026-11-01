@@ -1,0 +1,11 @@
+--- verify.py.original
++++ verify.py
+@@ -11,7 +11,7 @@
+ for i,(saved,req,response,record) in enumerate(zip(inputs,requests[1:],responses[1:],records)):
+     assert saved['payloads']==[req['body']], 'Ordered exact input payload mismatch'
+     assert record['metadata']['conversation_id']==saved['session_id']
+-    assert record['metadata']['profiling_index']==i
++    assert record['metadata']['profiling_index']==0  # one profiling phase, not request index
+     assert not record['metadata']['was_cancelled'] and record['metadata']['benchmark_phase']=='profiling'
+     assert req['body']['stream'] is True and req['body']['stream_options']['include_usage'] is True
+     assert response['usage']=={'prompt_tokens':158,'completion_tokens':32,'total_tokens':190}

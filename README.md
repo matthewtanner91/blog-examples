@@ -1,6 +1,6 @@
 # Blog examples
 
-Seven self-contained tutorial companions. Read each example's requirements, run instructions and limitations before running it in a disposable local copy.
+Eight self-contained tutorial companions. Read each example's requirements, run instructions and limitations before running it in a disposable local copy.
 
 | Example | What it demonstrates |
 | --- | --- |
@@ -11,6 +11,7 @@ Seven self-contained tutorial companions. Read each example's requirements, run 
 | [DSPy tutorial](dspy-tutorial/) | Optimize a typed classifier with validation and held-out evaluation, or replay the recorded requests offline. |
 | [Dead code detection](dead-code-detection/) | Compare analyzer entry points and verify removal of an unused export. |
 | [Architecture fitness functions](architecture-fitness-functions/) | Enforce a dependency rule and test a frozen baseline of existing violations. |
+| [AIPerf CPU example](aiperf/) | Profile four local streaming model requests and verify token accounting, saved results and cleanup. |
 
 The first three examples include recorded outputs and SHA-256 manifests. Those records describe prior runs; cloning this repository does not run or revalidate them. The microservices fixture generates fresh local evidence when run. Platform requirements differ by example.
 

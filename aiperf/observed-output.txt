@@ -1,0 +1,8 @@
+AIPerf output excerpt — historical four-request CPU configuration check
+Not a live terminal screenshot; not a performance benchmark.
+
+┃                                        Metric ┃    avg ┃    min ┃    max ┃    p99 ┃    p90 ┃    p50 ┃  std ┃
+│               Output Sequence Length (tokens) │  32.00 │  32.00 │  32.00 │  32.00 │  32.00 │  32.00 │ 0.00 │
+│                Input Sequence Length (tokens) │ 158.00 │ 158.00 │ 158.00 │ 158.00 │ 158.00 │ 158.00 │ 0.00 │
+│                        Request Error Rate (%) │   0.00 │    N/A │    N/A │    N/A │    N/A │    N/A │  N/A │
+│                      Request Count (requests) │   4.00 │    N/A │    N/A │    N/A │    N/A │    N/A │  N/A │
