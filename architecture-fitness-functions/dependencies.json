@@ -1,0 +1,17 @@
+[
+  {
+    "file": "archunit-1.5.1.jar",
+    "url": "https://repo.maven.apache.org/maven2/com/tngtech/archunit/archunit/1.5.1/archunit-1.5.1.jar",
+    "sha256": "a4dbfc51c90005ad6ac9967672a7efb43aa6928287a57238b28e60e0a75c5c6f"
+  },
+  {
+    "file": "slf4j-api-2.0.19.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-api/2.0.19/slf4j-api-2.0.19.jar",
+    "sha256": "e91ff6d720609e7a194ffe758c3ed5c84e798617ae07b0a0f6a4fe229741b4bb"
+  },
+  {
+    "file": "slf4j-nop-2.0.19.jar",
+    "url": "https://repo.maven.apache.org/maven2/org/slf4j/slf4j-nop/2.0.19/slf4j-nop-2.0.19.jar",
+    "sha256": "d0226062f9b3a2793f62002f892a8e624eb07f396130fc949e01b1d5f4888cba"
+  }
+]

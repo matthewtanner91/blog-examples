@@ -1,0 +1,814 @@
+[
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nI was charged twice for my subscription. Please refund the duplicate payment.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "9aeccdf96f5f81f2f6849d08d6d7cf310644180533b01ec44df5a6e6f8c600da",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0308fe880f6767cc016ae72a1b779087d2b7e9930d560a6eb8\",\n  \"object\": \"response\",\n  \"created_at\": 1793534491,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534492,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0308fe880f6767cc016ae72a1c7a2487d29a821cfb560d9d84\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 198,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 207\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## current_instruction ## ]]\nClassify a support ticket as billing, technical, or account.\n\n[[ ## examples_with_feedback ## ]]\n[{\"Inputs\": {\"ticket\": \"I was charged twice for my subscription.\"}, \"Generated Outputs\": {\"category\": \"technical\"}, \"Feedback\": \"Incorrect. Expected billing because duplicate charges are payment issues.\"}]\n\nRespond with a JSON object in the following order of fields: `new_instruction`."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `current_instruction` (str): The instructions I provided to the assistant.\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\nYour output fields are:\n1. `new_instruction` (str): The new instruction for the assistant.\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## current_instruction ## ]]\n{current_instruction}\n\n[[ ## examples_with_feedback ## ]]\n{examples_with_feedback}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"new_instruction\": \"{new_instruction}\"\n}\nIn adhering to this structure, your objective is: \n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\n        \n        Your task is to write a new instruction for the assistant.\n        \n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\n        \n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.",
+      "max_output_tokens": 256,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "a8dc99f6e43fa197975313b2e9e9dc224373d2e3856d29ade6045025a12f527e",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_09a9b2d028b66ea2016ae72a1cfa5487d2a6bdfb43dc885680\",\n  \"object\": \"response\",\n  \"created_at\": 1793534493,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534495,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `current_instruction` (str): The instructions I provided to the assistant.\\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\\nYour output fields are:\\n1. `new_instruction` (str): The new instruction for the assistant.\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## current_instruction ## ]]\\n{current_instruction}\\n\\n[[ ## examples_with_feedback ## ]]\\n{examples_with_feedback}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"new_instruction\\\": \\\"{new_instruction}\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\\n        \\n        Your task is to write a new instruction for the assistant.\\n        \\n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\\n        \\n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.\",\n  \"max_output_tokens\": 256,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_09a9b2d028b66ea2016ae72a1e087087d2a0a37cda1e22cdf9\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"new_instruction\\\":\\\"Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for charges, payments, invoices, refunds, subscriptions, and other payment issues (including duplicate charges). Use `technical` for product malfunctions, errors, or troubleshooting issues. Use `account` for account access, profile, credentials, or account-management issues that are not primarily billing or technical problems. Choose the category that best matches the ticket\\u2019s main issue, and return only a JSON object with a `category` field.\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 424,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 118,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 542\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nI cancelled before renewal but received another subscription charge.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "5401f28892d2d828c37b41a5728052e3e1a8f75aaf40c197fe4d058aa6bc7db5",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0e35bbeaa8154092016ae72a1f6d8887d297e54ca9c79cb0bc\",\n  \"object\": \"response\",\n  \"created_at\": 1793534495,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534496,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0e35bbeaa8154092016ae72a2040d087d291f6a67828694e8f\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nA valid API token authenticates, but the upload operation crashes.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "a687614a2595eb2036af85ed28b590633ac9f40b033b1ee522f3d62057c81f7f",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0532a9d5cad03fa2016ae72a207be887d287f19891b15e8d5e\",\n  \"object\": \"response\",\n  \"created_at\": 1793534496,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534497,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0532a9d5cad03fa2016ae72a21033487d28817ab011bb6e35a\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 197,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 206\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nChange the email address used to sign into my profile.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f26bf8e9153332ed7fe3e4066e341843a7b61b0ac8b6c8f86747a1663d5178cf",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_02282471cf9e0df1016ae72a217f2087d2ac14c244daac38dd\",\n  \"object\": \"response\",\n  \"created_at\": 1793534497,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534498,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_02282471cf9e0df1016ae72a22557087d2a720b6663d522aeb\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 195,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 204\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nPlease correct the tax amount on invoice 418.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "9eab8dff511adbf3015181f1d35b7b6002fb0ec63529f5461cb764fcb8dd9a42",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0f0678572f85d74e016ae72a22b54c87d28d1372d886df17a0\",\n  \"object\": \"response\",\n  \"created_at\": 1793534498,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534500,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0f0678572f85d74e016ae72a241f5087d28b08c55f264b8720\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nWebhook deliveries time out although the endpoint responds locally.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "450e01e74b2642d31993561bd89290740e9eda98f1f2ddd97715f51e0abbf476",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_03c03bae33c0c6aa016ae72a245ae487d289af6111b23e32b1\",\n  \"object\": \"response\",\n  \"created_at\": 1793534500,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534500,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_03c03bae33c0c6aa016ae72a24e0f087d295cf52fa84efa398\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## current_instruction ## ]]\nClassify a support ticket as billing, technical, or account.\n\n[[ ## examples_with_feedback ## ]]\n[{\"Inputs\": {\"ticket\": \"Please correct the tax amount on invoice 418.\"}, \"Generated Outputs\": {\"category\": \"billing\"}, \"Feedback\": \"Correct. Expected billing for this support ticket.\"}, {\"Inputs\": {\"ticket\": \"Webhook deliveries time out although the endpoint responds locally.\"}, \"Generated Outputs\": {\"category\": \"technical\"}, \"Feedback\": \"Correct. Expected technical for this support ticket.\"}]\n\nRespond with a JSON object in the following order of fields: `new_instruction`."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `current_instruction` (str): The instructions I provided to the assistant.\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\nYour output fields are:\n1. `new_instruction` (str): The new instruction for the assistant.\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## current_instruction ## ]]\n{current_instruction}\n\n[[ ## examples_with_feedback ## ]]\n{examples_with_feedback}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"new_instruction\": \"{new_instruction}\"\n}\nIn adhering to this structure, your objective is: \n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\n        \n        Your task is to write a new instruction for the assistant.\n        \n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\n        \n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.",
+      "max_output_tokens": 256,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "59220cae7892d6b3a2b9407832b291963cd5de9f2d71c88c392abc75f6d35953",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_06418725cab25f0b016ae72a25324487d2bc8e61969c30db3a\",\n  \"object\": \"response\",\n  \"created_at\": 1793534501,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534502,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `current_instruction` (str): The instructions I provided to the assistant.\\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\\nYour output fields are:\\n1. `new_instruction` (str): The new instruction for the assistant.\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## current_instruction ## ]]\\n{current_instruction}\\n\\n[[ ## examples_with_feedback ## ]]\\n{examples_with_feedback}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"new_instruction\\\": \\\"{new_instruction}\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\\n        \\n        Your task is to write a new instruction for the assistant.\\n        \\n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\\n        \\n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.\",\n  \"max_output_tokens\": 256,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_06418725cab25f0b016ae72a25d90487d2973b172c54823852\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"new_instruction\\\":\\\"Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for invoices, taxes, charges, payments, refunds, or other financial matters; use `technical` for product malfunctions, errors, integrations, or performance issues (for example, webhook deliveries timing out); use `account` for account access, profile, or account-management matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 466,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 109,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 575\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nPlease correct the tax amount on invoice 418.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for invoices, taxes, charges, payments, refunds, or other financial matters; use `technical` for product malfunctions, errors, integrations, or performance issues (for example, webhook deliveries timing out); use `account` for account access, profile, or account-management matters. Return only a JSON object with a single field, `category`, whose value is the selected category.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "9fb8d2d4652339c917e297076443338bf5f742384e91e0ea92eb7fe83d0a902e",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_07cf40dcefa36063016ae72a271d4887d2b0c2b383e0dd5dd7\",\n  \"object\": \"response\",\n  \"created_at\": 1793534503,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534503,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for invoices, taxes, charges, payments, refunds, or other financial matters; use `technical` for product malfunctions, errors, integrations, or performance issues (for example, webhook deliveries timing out); use `account` for account access, profile, or account-management matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_07cf40dcefa36063016ae72a27e96487d2acd5d3130d576152\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 281,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 290\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nWebhook deliveries time out although the endpoint responds locally.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for invoices, taxes, charges, payments, refunds, or other financial matters; use `technical` for product malfunctions, errors, integrations, or performance issues (for example, webhook deliveries timing out); use `account` for account access, profile, or account-management matters. Return only a JSON object with a single field, `category`, whose value is the selected category.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "138a9aa3b99efabc410da8931e94a91ef079f9753da152fcc392771d67758154",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0d39f44c92fb6401016ae72a2825b087d284af0d0c4b79c7ff\",\n  \"object\": \"response\",\n  \"created_at\": 1793534504,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534504,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `billing` for invoices, taxes, charges, payments, refunds, or other financial matters; use `technical` for product malfunctions, errors, integrations, or performance issues (for example, webhook deliveries timing out); use `account` for account access, profile, or account-management matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0d39f44c92fb6401016ae72a289bac87d2b2d8e6218c73eba3\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 281,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 290\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nPlease remove a former teammate from our workspace.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "4db019b7ccbaed7ffbc6962d74cecaab8f6e15f5fccd6bfd333a9e4117eb195f",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0838e068b03268f1016ae72a29395087d28a8ca2410391970d\",\n  \"object\": \"response\",\n  \"created_at\": 1793534505,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534505,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0838e068b03268f1016ae72a29d42c87d28368c1582ecf5ec7\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 193,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 202\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nThe export API returns HTTP 500 for every report.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "10f95f2f8c130ec9dabd96098d18cab4f5d0717c4365e8ff7765b2c561294e13",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_017075e5a04d18e1016ae72a2a186487d2a412a2ccf191a649\",\n  \"object\": \"response\",\n  \"created_at\": 1793534506,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534506,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_017075e5a04d18e1016ae72a2aa90c87d2988ffea58a3f9c3b\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 195,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 204\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## current_instruction ## ]]\nClassify a support ticket as billing, technical, or account.\n\n[[ ## examples_with_feedback ## ]]\n[{\"Inputs\": {\"ticket\": \"Please remove a former teammate from our workspace.\"}, \"Generated Outputs\": {\"category\": \"account\"}, \"Feedback\": \"Correct. Expected account for this support ticket.\"}, {\"Inputs\": {\"ticket\": \"The export API returns HTTP 500 for every report.\"}, \"Generated Outputs\": {\"category\": \"technical\"}, \"Feedback\": \"Correct. Expected technical for this support ticket.\"}]\n\nRespond with a JSON object in the following order of fields: `new_instruction`."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `current_instruction` (str): The instructions I provided to the assistant.\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\nYour output fields are:\n1. `new_instruction` (str): The new instruction for the assistant.\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## current_instruction ## ]]\n{current_instruction}\n\n[[ ## examples_with_feedback ## ]]\n{examples_with_feedback}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"new_instruction\": \"{new_instruction}\"\n}\nIn adhering to this structure, your objective is: \n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\n        \n        Your task is to write a new instruction for the assistant.\n        \n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\n        \n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.",
+      "max_output_tokens": 256,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "51bd04b3d300c013cb982178ff20cee4c0e119696fb4cce12cb642ab30fd1d32",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_09af5b074b474f51016ae72a2ae1f887d29f4453463de296d7\",\n  \"object\": \"response\",\n  \"created_at\": 1793534506,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534508,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `current_instruction` (str): The instructions I provided to the assistant.\\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\\nYour output fields are:\\n1. `new_instruction` (str): The new instruction for the assistant.\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## current_instruction ## ]]\\n{current_instruction}\\n\\n[[ ## examples_with_feedback ## ]]\\n{examples_with_feedback}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"new_instruction\\\": \\\"{new_instruction}\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\\n        \\n        Your task is to write a new instruction for the assistant.\\n        \\n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\\n        \\n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.\",\n  \"max_output_tokens\": 256,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_09af5b074b474f51016ae72a2b717087d285740ec8a0ca7eae\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"new_instruction\\\":\\\"Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for workspace membership and user-access changes, such as removing a former teammate. Use `technical` for product malfunctions, errors, or broken APIs, such as an export API returning HTTP 500. Use `billing` for charges, invoices, payments, subscriptions, or other billing matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 466,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 111,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 577\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nPlease remove a former teammate from our workspace.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for workspace membership and user-access changes, such as removing a former teammate. Use `technical` for product malfunctions, errors, or broken APIs, such as an export API returning HTTP 500. Use `billing` for charges, invoices, payments, subscriptions, or other billing matters. Return only a JSON object with a single field, `category`, whose value is the selected category.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f6e493868c0c17712c4b132ad1351cf9bae8532cb1cbd7093cced4b98ffb452f",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_00aa5492c110be7d016ae72a2cb50487d29dece43ffcd85615\",\n  \"object\": \"response\",\n  \"created_at\": 1793534508,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534509,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for workspace membership and user-access changes, such as removing a former teammate. Use `technical` for product malfunctions, errors, or broken APIs, such as an export API returning HTTP 500. Use `billing` for charges, invoices, payments, subscriptions, or other billing matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_00aa5492c110be7d016ae72a2dbed887d28d53da6c02c73602\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 282,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 291\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nThe export API returns HTTP 500 for every report.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for workspace membership and user-access changes, such as removing a former teammate. Use `technical` for product malfunctions, errors, or broken APIs, such as an export API returning HTTP 500. Use `billing` for charges, invoices, payments, subscriptions, or other billing matters. Return only a JSON object with a single field, `category`, whose value is the selected category.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f78112d23a49dfd37d047b593ea7fce0038bf5053757ff80855a48c09ece1606",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_02fed0e2973b4aed016ae72a2e069887d28f253efe4a537f8e\",\n  \"object\": \"response\",\n  \"created_at\": 1793534510,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534510,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for workspace membership and user-access changes, such as removing a former teammate. Use `technical` for product malfunctions, errors, or broken APIs, such as an export API returning HTTP 500. Use `billing` for charges, invoices, payments, subscriptions, or other billing matters. Return only a JSON object with a single field, `category`, whose value is the selected category.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_02fed0e2973b4aed016ae72a2e7f8c87d296764e36320d6fda\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 284,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 293\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nI need to reset the password for my login.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "66a533a14f14e4b9ef00685174c60515b043ab492d66b6718fe834a561e32d20",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_082c2ac7000a7eca016ae72a2ec00487d29ae34fff0b6e90c5\",\n  \"object\": \"response\",\n  \"created_at\": 1793534510,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534511,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_082c2ac7000a7eca016ae72a2fb81087d2b004066b8a0f19ec\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nMy renewal invoice charged me twice this month.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f78eb85a6cfcbaf69df575e60b30c9f4a5944a5afb95ea57b1be8072e5e00b50",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0374375dc3fdf6ec016ae72a30010487d2b2595bfbdae2b3f3\",\n  \"object\": \"response\",\n  \"created_at\": 1793534512,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534512,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0374375dc3fdf6ec016ae72a309a0c87d2abfff28bcfcae663\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 193,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 202\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## current_instruction ## ]]\nClassify a support ticket as billing, technical, or account.\n\n[[ ## examples_with_feedback ## ]]\n[{\"Inputs\": {\"ticket\": \"I need to reset the password for my login.\"}, \"Generated Outputs\": {\"category\": \"account\"}, \"Feedback\": \"Correct. Expected account for this support ticket.\"}, {\"Inputs\": {\"ticket\": \"My renewal invoice charged me twice this month.\"}, \"Generated Outputs\": {\"category\": \"billing\"}, \"Feedback\": \"Correct. Expected billing for this support ticket.\"}]\n\nRespond with a JSON object in the following order of fields: `new_instruction`."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `current_instruction` (str): The instructions I provided to the assistant.\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\nYour output fields are:\n1. `new_instruction` (str): The new instruction for the assistant.\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## current_instruction ## ]]\n{current_instruction}\n\n[[ ## examples_with_feedback ## ]]\n{examples_with_feedback}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"new_instruction\": \"{new_instruction}\"\n}\nIn adhering to this structure, your objective is: \n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\n        \n        Your task is to write a new instruction for the assistant.\n        \n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\n        \n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.",
+      "max_output_tokens": 256,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f32e2d7eea500f4317fdc213c5ab62c63e5943d8f364fd3454a7e80bf0f720f4",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_037bc2d1d97f0e95016ae72a30d58887d282e3a4608b3630db\",\n  \"object\": \"response\",\n  \"created_at\": 1793534512,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534514,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `current_instruction` (str): The instructions I provided to the assistant.\\n2. `examples_with_feedback` (list[dict[str, Any]]): Task inputs provided to the assistant, the assistant's response for each, and feedback on how the response could be better.\\nYour output fields are:\\n1. `new_instruction` (str): The new instruction for the assistant.\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## current_instruction ## ]]\\n{current_instruction}\\n\\n[[ ## examples_with_feedback ## ]]\\n{examples_with_feedback}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"new_instruction\\\": \\\"{new_instruction}\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        I provided an assistant with instructions to perform a task for me. You are given those instructions, along with examples of different task inputs provided to the assistant, the assistant's response for each of them, and some feedback on how the assistant's response could be better.\\n        \\n        Your task is to write a new instruction for the assistant.\\n        \\n        Read the inputs carefully and identify the input format and infer detailed task description about the task I wish to solve with the assistant.\\n        \\n        Read all the assistant responses and the corresponding feedback. Identify all niche and domain specific factual information about the task and include it in the instruction, as a lot of it may not be available to the assistant in the future. The assistant may have utilized a generalizable strategy to solve the task, if so, include that in the instruction as well.\",\n  \"max_output_tokens\": 256,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_037bc2d1d97f0e95016ae72a3193c887d29fec6703fb68adb8\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"new_instruction\\\":\\\"Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for login, password, profile, or access-management requests; use `billing` for invoices, charges, payments, renewals, or refunds; use `technical` for product malfunctions, errors, or troubleshooting. Return only a JSON object with a single field, `category`, whose value is one of those three labels.\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 465,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 98,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 563\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nI need to reset the password for my login.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for login, password, profile, or access-management requests; use `billing` for invoices, charges, payments, renewals, or refunds; use `technical` for product malfunctions, errors, or troubleshooting. Return only a JSON object with a single field, `category`, whose value is one of those three labels.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "6da56d882a3ca0ae00c8bea0d6176f930316822bbe9daed0e44c60824cb65139",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_07bae306ffa6c67d016ae72a32f9e887d28d860ff85a909f8d\",\n  \"object\": \"response\",\n  \"created_at\": 1793534515,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534517,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for login, password, profile, or access-management requests; use `billing` for invoices, charges, payments, renewals, or refunds; use `technical` for product malfunctions, errors, or troubleshooting. Return only a JSON object with a single field, `category`, whose value is one of those three labels.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_07bae306ffa6c67d016ae72a35b38087d29498442435b27e1e\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 270,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 279\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nMy renewal invoice charged me twice this month.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for login, password, profile, or access-management requests; use `billing` for invoices, charges, payments, renewals, or refunds; use `technical` for product malfunctions, errors, or troubleshooting. Return only a JSON object with a single field, `category`, whose value is one of those three labels.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "1200331b2d5aa7b1a70161a1008998396b1a1d6e202d305b18a3f218f91ce77d",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0812127b9e4d2be2016ae72a35f88487d2ad6777c0de4fb296\",\n  \"object\": \"response\",\n  \"created_at\": 1793534517,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534521,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify each support ticket into exactly one category: `billing`, `technical`, or `account`. Use `account` for login, password, profile, or access-management requests; use `billing` for invoices, charges, payments, renewals, or refunds; use `technical` for product malfunctions, errors, or troubleshooting. Return only a JSON object with a single field, `category`, whose value is one of those three labels.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0812127b9e4d2be2016ae72a39c5ec87d2b8be1018c2dfa736\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 269,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 278\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nI cancelled before renewal but received another subscription charge.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "5401f28892d2d828c37b41a5728052e3e1a8f75aaf40c197fe4d058aa6bc7db5",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0181a4d4ab74619e016ae72a3a092087d28be39291118eb5bc\",\n  \"object\": \"response\",\n  \"created_at\": 1793534522,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534523,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0181a4d4ab74619e016ae72a3ba6c087d2a6869cc41aa4a314\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nA valid API token authenticates, but the upload operation crashes.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "a687614a2595eb2036af85ed28b590633ac9f40b033b1ee522f3d62057c81f7f",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_07f414967e54a8f2016ae72a3bdc9087d29e3b8283415564bf\",\n  \"object\": \"response\",\n  \"created_at\": 1793534523,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534524,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_07f414967e54a8f2016ae72a3c6ff487d29dd5cdd1e56283e8\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 197,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 206\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nChange the email address used to sign into my profile.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "f26bf8e9153332ed7fe3e4066e341843a7b61b0ac8b6c8f86747a1663d5178cf",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0d1c87f3b36a2855016ae72a3cabc087d29c44e18fd84a28db\",\n  \"object\": \"response\",\n  \"created_at\": 1793534524,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534525,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0d1c87f3b36a2855016ae72a3d2f5487d2999feafebde63aa7\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 195,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 204\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nThe payment receipt shows a higher amount than the agreed plan price.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "c32baf151c21658a3934cd3169309b08aef566a29506ca53adcf64123a1bfbfb",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0a817e5222a940bb016ae72a3d6d4c87d2874a1a5368493be4\",\n  \"object\": \"response\",\n  \"created_at\": 1793534525,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534527,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0a817e5222a940bb016ae72a3ef48887d287b97358280ed8ac\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 197,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 206\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nOur scheduled synchronization stops midway with a database error.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "275a3d64df5d3234b27f13d71e603bac1303945e222929c92dae38ca4b958962",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0d0c28c5276db53e016ae72a3f342487d2ba7132e9f605c0ad\",\n  \"object\": \"response\",\n  \"created_at\": 1793534527,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534528,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0d0c28c5276db53e016ae72a3feca487d2994d5bdcc06043b7\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nTransfer workspace ownership to my colleague when I leave.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "9234034ab5409cdb9b5510a130b30ccf0cb74debaf31ae750e28a57895db0ca2",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_09e5f098668753cc016ae72a40257487d28e7f3a66e68f575c\",\n  \"object\": \"response\",\n  \"created_at\": 1793534528,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534528,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_09e5f098668753cc016ae72a40dab887d2919eb7daece56657\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nThe payment receipt shows a higher amount than the agreed plan price.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "c32baf151c21658a3934cd3169309b08aef566a29506ca53adcf64123a1bfbfb",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_0f4f8c7ae22f320b016ae72a410fb487d2b00e709c9dbe0329\",\n  \"object\": \"response\",\n  \"created_at\": 1793534529,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534529,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_0f4f8c7ae22f320b016ae72a418da087d2ae9be7157b74c387\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"billing\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 197,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 206\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nOur scheduled synchronization stops midway with a database error.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "275a3d64df5d3234b27f13d71e603bac1303945e222929c92dae38ca4b958962",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_083feb6b7eb7d0ae016ae72a41d07087d2b9602d0520898d7a\",\n  \"object\": \"response\",\n  \"created_at\": 1793534529,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534530,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_083feb6b7eb7d0ae016ae72a42504487d286ade06c198cf329\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"technical\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  },
+  {
+    "request": {
+      "model": "gpt-6-luna",
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "[[ ## ticket ## ]]\nTransfer workspace ownership to my colleague when I leave.\n\nRespond with a JSON object in the following order of fields: `category` (must be formatted as a valid Python Literal['billing', 'technical', 'account'])."
+            }
+          ]
+        }
+      ],
+      "stream": false,
+      "instructions": "Your input fields are:\n1. `ticket` (str):\nYour output fields are:\n1. `category` (Literal['billing', 'technical', 'account']):\nAll interactions will be structured in the following way, with the appropriate values filled in.\n\nInputs will have the following structure:\n\n[[ ## ticket ## ]]\n{ticket}\n\nOutputs will be a JSON object with the following fields.\n\n{\n  \"category\": \"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\"\n}\nIn adhering to this structure, your objective is: \n        Classify a support ticket as billing, technical, or account.",
+      "max_output_tokens": 64,
+      "temperature": 0.0,
+      "reasoning": {
+        "effort": "none"
+      },
+      "service_tier": "default",
+      "store": false
+    },
+    "body_sha256": "9234034ab5409cdb9b5510a130b30ccf0cb74debaf31ae750e28a57895db0ca2",
+    "status": 200,
+    "body": "{\n  \"id\": \"resp_03219785e1e0c635016ae72a42958887d2b325f64fb6740d35\",\n  \"object\": \"response\",\n  \"created_at\": 1793534530,\n  \"status\": \"completed\",\n  \"access_programs\": null,\n  \"background\": false,\n  \"billing\": {\n    \"payer\": \"developer\"\n  },\n  \"completed_at\": 1793534531,\n  \"error\": null,\n  \"frequency_penalty\": 0.0,\n  \"incomplete_details\": null,\n  \"instructions\": \"Your input fields are:\\n1. `ticket` (str):\\nYour output fields are:\\n1. `category` (Literal['billing', 'technical', 'account']):\\nAll interactions will be structured in the following way, with the appropriate values filled in.\\n\\nInputs will have the following structure:\\n\\n[[ ## ticket ## ]]\\n{ticket}\\n\\nOutputs will be a JSON object with the following fields.\\n\\n{\\n  \\\"category\\\": \\\"{category}        # note: the value you produce must exactly match (no extra characters) one of: billing; technical; account\\\"\\n}\\nIn adhering to this structure, your objective is: \\n        Classify a support ticket as billing, technical, or account.\",\n  \"max_output_tokens\": 64,\n  \"max_tool_calls\": null,\n  \"model\": \"gpt-6-luna\",\n  \"moderation\": null,\n  \"output\": [\n    {\n      \"id\": \"msg_03219785e1e0c635016ae72a43209487d2ab594cf9cf278593\",\n      \"type\": \"message\",\n      \"status\": \"completed\",\n      \"content\": [\n        {\n          \"type\": \"output_text\",\n          \"annotations\": [],\n          \"logprobs\": [],\n          \"text\": \"{\\\"category\\\":\\\"account\\\"}\"\n        }\n      ],\n      \"phase\": \"final_answer\",\n      \"role\": \"assistant\"\n    }\n  ],\n  \"parallel_tool_calls\": true,\n  \"presence_penalty\": 0.0,\n  \"previous_response_id\": null,\n  \"prompt_cache_key\": null,\n  \"prompt_cache_retention\": \"24h\",\n  \"reasoning\": {\n    \"context\": \"all_turns\",\n    \"effort\": \"none\",\n    \"mode\": \"standard\",\n    \"summary\": null\n  },\n  \"safety_identifier\": null,\n  \"service_tier\": \"default\",\n  \"store\": false,\n  \"temperature\": 0.0,\n  \"text\": {\n    \"format\": {\n      \"type\": \"text\"\n    },\n    \"verbosity\": \"medium\"\n  },\n  \"tool_choice\": \"auto\",\n  \"tool_usage\": {\n    \"image_gen\": {\n      \"input_tokens\": 0,\n      \"input_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"output_tokens\": 0,\n      \"output_tokens_details\": {\n        \"image_tokens\": 0,\n        \"text_tokens\": 0\n      },\n      \"total_tokens\": 0\n    },\n    \"web_search\": {\n      \"num_requests\": 0\n    }\n  },\n  \"tools\": [],\n  \"top_logprobs\": 0,\n  \"top_p\": 0.98,\n  \"truncation\": \"disabled\",\n  \"usage\": {\n    \"input_tokens\": 194,\n    \"input_tokens_details\": {\n      \"cache_write_tokens\": 0,\n      \"cached_tokens\": 0\n    },\n    \"output_tokens\": 9,\n    \"output_tokens_details\": {\n      \"reasoning_tokens\": 0\n    },\n    \"total_tokens\": 203\n  },\n  \"user\": null,\n  \"metadata\": {}\n}"
+  }
+]

@@ -1,0 +1,3 @@
+node_modules/
+dead-code-*/
+__pycache__/

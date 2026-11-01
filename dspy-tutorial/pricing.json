@@ -1,0 +1,17 @@
+{
+  "source": "https://developers.openai.com/api/docs/pricing",
+  "verified_date": "2026-10-31",
+  "model": "gpt-6-luna",
+  "service_tier": "default",
+  "input_usd_per_million": "0.10",
+  "cached_input_usd_per_million": "0.01",
+  "output_usd_per_million": "0.50",
+  "authorized_usd": "0.10",
+  "planning_input_estimate": "final UTF-8 request bytes plus1024 per request; conservative planning estimate, not a tokenizer guarantee",
+  "max_plan_usd": "0.038912",
+  "input_2048_tokens": "planning target only; not an enforced pre-count",
+  "cache_write_30m_usd_per_million": "0.125",
+  "planning_input_usd_per_million": "0.125",
+  "cache_write_source": "https://developers.openai.com/api/docs/guides/prompt-caching",
+  "cache_write_policy": "Require explicit reported count; accept only30m writes, reject12h or unknown usage"
+}

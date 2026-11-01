@@ -1,0 +1,7 @@
+Incomplete roots: jobs/reconcile.ts; reconcileLedger; obsoleteCsvPath
+Complete roots: obsoleteCsvPath only
+After removal: no Knip issues
+Application check passed: invoice total = 75
+Scheduled-job check passed: reconciled total = 100
+Before/after application and scheduled-job outputs match.
+Reports and edited copy: dead-code-d9_on4k0/

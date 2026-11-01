@@ -1,0 +1,6 @@
+{
+  "name": "dead-code-detection-example",
+  "private": true,
+  "type": "module",
+  "devDependencies": { "knip": "6.44.0", "typescript": "5.9.3" }
+}

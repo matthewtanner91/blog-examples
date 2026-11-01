@@ -1,0 +1,1 @@
+{"instructions": [{"predict": "Classify a support ticket as billing, technical, or account."}], "parents": [[null]], "validation_scores": [1.0], "validation_subscores": [{"0": 1.0, "1": 1.0, "2": 1.0}], "discovery_eval_counts": [0], "total_metric_calls": 15, "metric_events": 21}
